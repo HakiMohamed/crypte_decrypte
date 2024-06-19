@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+     <meta name="googlebot" content="noindex, nofollow">
+    <title>Custom Reversible Hash Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Ajout de styles personnalisés */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        textarea {
+            width: calc(100% - 16px);
+            height: 100px;
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            filter: brightness(110%);
+        }
+
+        #hashedResult {
+            width: calc(100% - 16px);
+            height: 100px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <div style="z-index: 99999;" class="container bg-white shadow-lg rounded-lg px-8 py-6 mt-16">
+        <h2 class="text-3xl font-bold mb-6 text-center">Custom Reversible Hash Example</h2>
+        <label for="message" class="block text-lg mb-2">Message à "hasher" / "déhasher" :</label>
+        <textarea id="message" placeholder="Entrez le message à hasher ou le hash à déchiffrer"
+            class="w-full h-32 p-2 text-lg border border-gray-300 rounded-lg resize-y focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
+        <div class="flex justify-center mt-4 space-x-4">
+            <button onclick="hashMessage()"
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">"Hasher"</button>
+            <button onclick="dehashMessage()"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">"Déchiffrer"</button>
+        </div>
+        <div class="mt-6">
+            <label for="hashedResult" class="block text-lg mb-2">Résultat :</label>
+            <textarea id="hashedResult" readonly
+                class="w-full h-32 p-2 text-lg border border-gray-300 rounded-lg resize-y focus:outline-none"></textarea>
+        </div>
+    </div>
+   <script src="./cles.js"></script>
+
+</body>
+</html>
