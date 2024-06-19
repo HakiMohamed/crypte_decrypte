@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-     <meta name="googlebot" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
     <title>Custom Reversible Hash Example</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Ajout de styles personnalisés */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f2f2f2;
@@ -45,6 +44,25 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             resize: vertical;
+            position: relative; /* Add this line */
+        }
+
+        .copy-button {
+            background-color: #a7a6a6bf;
+            color: #fff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: absolute; /* Add this line */
+            right: 8px; /* Add this line */
+            top: 20%; /* Add this line */
+            transform: translateY(-50%); /* Add this line */
+        }
+
+        .copy-button:hover {
+            background-color: #ffb300;
         }
 
         button {
@@ -59,39 +77,59 @@
         button:hover {
             filter: brightness(110%);
         }
-
-        #hashedResult {
-            width: calc(100% - 16px);
-            height: 100px;
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
     </style>
 </head>
 
 <body class="bg-gray-100">
 
-    <div style="z-index: 99999;" class="container bg-white shadow-lg rounded-lg px-8 py-6 mt-16">
+    <div style="z-index: 99999;" class="relative container bg-white shadow-lg rounded-lg px-8 py-6 mt-16">
         <h2 class="text-3xl font-bold mb-6 text-center">Custom Reversible Hash Example</h2>
         <label for="message" class="block text-lg mb-2">Message à "hasher" / "déhasher" :</label>
-        <textarea id="message" placeholder="Entrez le message à hasher ou le hash à déchiffrer"
-            class="w-full h-32 p-2 text-lg border border-gray-300 rounded-lg resize-y focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
+        <div class="relative">
+            <textarea id="message" placeholder="Entrez le message à hasher ou le hash à déchiffrer"
+                class="w-full h-32 p-2 text-lg border border-gray-300 rounded-lg resize-y focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
+            <button onclick="copyToClipboard('message')" class="copy-button">Copier</button>
+        </div>
         <div class="flex justify-center mt-4 space-x-4">
             <button onclick="hashMessage()"
-                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">"Hasher"</button>
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">Hasher</button>
             <button onclick="dehashMessage()"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">"Déchiffrer"</button>
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">Déchiffrer</button>
         </div>
         <div class="mt-6">
             <label for="hashedResult" class="block text-lg mb-2">Résultat :</label>
-            <textarea id="hashedResult" readonly
-                class="w-full h-32 p-2 text-lg border border-gray-300 rounded-lg resize-y focus:outline-none"></textarea>
+            <div class="relative">
+                <textarea id="hashedResult" readonly
+                    class="w-full h-32 p-2 text-lg border border-gray-300 rounded-lg resize-y focus:outline-none"></textarea>
+                <button onclick="copyToClipboard('hashedResult')" class="copy-button">Copier</button>
+            </div>
         </div>
     </div>
-   <script src="./cles.js"></script>
+
+    <script src="./cles.obfuscated.js"></script>
+    <script>
+        function copyToClipboard(elementId) {
+            const textarea = document.getElementById(elementId);
+            textarea.select();
+            document.execCommand('copy');
+            alert('Texte copié dans le presse-papier !');
+        }
+
+        function toggleCopyButton(elementId) {
+            const textarea = document.getElementById(elementId);
+            const button = textarea.nextElementSibling; // Get the next sibling, which is the copy button
+            button.style.display = 'inline-block';
+        }
+
+        document.getElementById('message').addEventListener('input', function () {
+            toggleCopyButton('message');
+        });
+
+        document.getElementById('hashedResult').addEventListener('input', function () {
+            toggleCopyButton('hashedResult');
+        });
+    </script>
 
 </body>
+
 </html>
