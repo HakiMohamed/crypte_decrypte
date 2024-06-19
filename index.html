@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
-    <title>Custom Reversible Hash Example</title>
+    <title>Hash</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
@@ -83,25 +83,25 @@
 <body class="bg-gray-100">
 
     <div style="z-index: 99999;" class="relative container bg-white shadow-lg rounded-lg px-8 py-6 mt-16">
-        <h2 class="text-3xl font-bold mb-6 text-center">Custom Reversible Hash Example</h2>
-        <label for="message" class="block text-lg mb-2">Message à "hasher" / "déhasher" :</label>
+        <h2 class="text-3xl font-bold mb-6 text-center">Try Our Custom Hash Service</h2>
+        <label for="message" class="block text-lg mb-2">Message to "hash" / "unhash" :</label>
         <div class="relative">
-            <textarea id="message" placeholder="Entrez le message à hasher ou le hash à déchiffrer"
+            <textarea id="message" placeholder="Enter the message to hash or the hash to decrypt"
                 class="w-full h-32 p-2 text-lg border border-gray-300 rounded-lg resize-y focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
-            <button onclick="copyToClipboard('message')" class="copy-button">Copier</button>
+            <button onclick="copyToClipboard('message')" class="copy-button">Copy</button>
         </div>
         <div class="flex justify-center mt-4 space-x-4">
             <button onclick="hashMessage()"
-                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">Hasher</button>
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">Hash</button>
             <button onclick="dehashMessage()"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">Déchiffrer</button>
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:scale-105">Unhash</button>
         </div>
         <div class="mt-6">
-            <label for="hashedResult" class="block text-lg mb-2">Résultat :</label>
+            <label for="hashedResult" class="block text-lg mb-2">Result :</label>
             <div class="relative">
                 <textarea id="hashedResult" readonly
                     class="w-full h-32 p-2 text-lg border border-gray-300 rounded-lg resize-y focus:outline-none"></textarea>
-                <button onclick="copyToClipboard('hashedResult')" class="copy-button">Copier</button>
+                <button onclick="copyToClipboard('hashedResult')" class="copy-button">Copy</button>
             </div>
         </div>
     </div>
@@ -112,7 +112,7 @@
             const textarea = document.getElementById(elementId);
             textarea.select();
             document.execCommand('copy');
-            alert('Texte copié dans le presse-papier !');
+            alert('Text copied to clipboard!');
         }
 
         function toggleCopyButton(elementId) {
